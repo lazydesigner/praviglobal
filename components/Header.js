@@ -11,7 +11,6 @@ import {
   ChevronDown,
   FlaskConical,
   Microscope,
- 
   Mars as Male,
   Venus as Female,
   Syringe,
@@ -23,13 +22,15 @@ import {
   Beaker,
   TestTube2,
   Baby,
-  ClipboardList
+  ClipboardList,
+  Globe
 } from 'lucide-react';
 import { hospitalInfo } from '@/lib/data';
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
+  const [internationalOpen, setInternationalOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
@@ -65,6 +66,27 @@ export default function Header() {
     { name: 'Verification Services', path: '/verification-services', icon: ClipboardList }
   ];
 
+  const International = [
+    { name: 'Iran', path: '/iran', icon: Globe },
+    { name: 'India', path: '/india', icon: Globe },
+    { name: 'Ethiopia', path: '/ethiopia', icon: Globe },
+    { name: 'Canada', path: '/canada', icon: Globe },
+    { name: 'Cameroon', path: '/cameroon', icon: Globe },
+    { name: 'Australia', path: '/australia', icon: Globe },
+    { name: 'Afghanistan', path: '/afghanistan', icon: Globe },
+    { name: 'Sri Lanka', path: '/sri-lanka', icon: Globe },
+    { name: 'Pakistan', path: '/pakistan', icon: Globe },
+    { name: 'Oman', path: '/oman', icon: Globe },
+    { name: 'Myanmar', path: '/myanmar', icon: Globe },
+    { name: 'Maldives', path: '/maldives', icon: Globe },
+    { name: 'Kazakhstan', path: '/kazakhstan', icon: Globe },
+    { name: 'Iraq', path: '/iraq', icon: Globe },
+    { name: 'Yemen', path: '/yemen', icon: Globe },
+    { name: 'Uzbekistan', path: '/uzbekistan', icon: Globe },
+    { name: 'United States', path: '/united-states', icon: Globe },
+    { name: 'Tajikistan', path: '/tajikistan', icon: Globe }
+  ];
+
   return (
     <>
       {/* Top Bar */}
@@ -98,18 +120,11 @@ export default function Header() {
           <div className="flex justify-between items-center py-4">
             {/* Logo */}
             <Link href="/" className="flex items-center space-x-2 group">
-              {/* <div className="bg-blue-600 p-2 rounded-lg group-hover:bg-blue-700 transition-colors">
-                <Heart className="h-6 w-6 text-white" />
-              </div>
-              <div>
-                <span className="text-xl font-bold text-gray-900">Pravi IVF</span>
-                <p className="text-xs text-gray-600">Fertility Center</p>
-              </div> */}
               <Image
-              src="/images/footer-logo.svg"
-              width={150}
-              height={50}
-              alt="Pravi IVF Logo"
+                src="/images/footer-logo.svg"
+                width={150}
+                height={50}
+                alt="Pravi IVF Logo"
               />
             </Link>
 
@@ -118,13 +133,13 @@ export default function Header() {
               {navLinks.map((link) =>
                 link.name === 'Services' ? (
                   <div key={link.name} className="relative group">
-                    <button
-                      className="flex items-center text-gray-50 hover:text-white font-medium transition-colors relative"
-                    >
-                      Services
-                      <ChevronDown className="h-4 w-4 ml-1" />
-                    </button>
-                    {/* Two-column Dropdown */}
+                    <Link href="/services">
+                      <button className="flex items-center text-gray-50 hover:text-white font-medium transition-colors relative">
+                        Services
+                        <ChevronDown className="h-4 w-4 ml-1" />
+                      </button>
+                    </Link>
+                    {/* Services Dropdown */}
                     <div className="absolute left-0 -mt-1 w-[500px] bg-white shadow-lg rounded-xl border border-gray-100 opacity-0 group-hover:opacity-100 group-hover:translate-y-1 pointer-events-none group-hover:pointer-events-auto transition-all duration-300 z-50">
                       <ul className="grid grid-cols-2 gap-x-2 py-2">
                         {services.map(({ name, path, icon: Icon }) => (
@@ -134,6 +149,31 @@ export default function Header() {
                               className="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-gray-600 transition-colors rounded-md"
                             >
                               <Icon className="h-4 w-4 text-blue-500" />
+                              {name}
+                            </Link>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+                ) : link.name === 'International' ? (
+                  <div key={link.name} className="relative group">
+                    <Link href="/international">
+                      <button className="flex items-center text-gray-50 hover:text-white font-medium transition-colors relative">
+                        International
+                        <ChevronDown className="h-4 w-4 ml-1" />
+                      </button>
+                    </Link>
+                    {/* International Dropdown */}
+                    <div className="absolute left-0 -mt-1 w-[400px] bg-white shadow-lg rounded-xl border border-gray-100 opacity-0 group-hover:opacity-100 group-hover:translate-y-1 pointer-events-none group-hover:pointer-events-auto transition-all duration-300 z-50">
+                      <ul className="grid grid-cols-2 gap-x-2 py-2">
+                        {International.map(({ name, path, icon: Icon }) => (
+                          <li key={path}>
+                            <Link
+                              href={path}
+                              className="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-gray-600 transition-colors rounded-md"
+                            >
+                              <Icon className="h-4 w-4 text-green-500" />
                               {name}
                             </Link>
                           </li>
@@ -185,11 +225,7 @@ export default function Header() {
                         className="flex items-center justify-between text-gray-50 font-medium w-full py-2"
                       >
                         <span className="flex items-center gap-2">Services</span>
-                        <ChevronDown
-                          className={`h-4 w-4 transition-transform ${
-                            servicesOpen ? 'rotate-180' : ''
-                          }`}
-                        />
+                        <ChevronDown className={`h-4 w-4 transition-transform ${servicesOpen ? 'rotate-180' : ''}`} />
                       </button>
                       {servicesOpen && (
                         <div className="pl-4 mt-2 grid grid-cols-2 gap-x-3 gap-y-2">
@@ -201,6 +237,31 @@ export default function Header() {
                               onClick={() => setMobileMenuOpen(false)}
                             >
                               <Icon className="h-4 w-4 text-blue-500" />
+                              {name}
+                            </Link>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  ) : link.name === 'International' ? (
+                    <div key={link.name}>
+                      <button
+                        onClick={() => setInternationalOpen(!internationalOpen)}
+                        className="flex items-center justify-between text-gray-50 font-medium w-full py-2"
+                      >
+                        <span className="flex items-center gap-2">International</span>
+                        <ChevronDown className={`h-4 w-4 transition-transform ${internationalOpen ? 'rotate-180' : ''}`} />
+                      </button>
+                      {internationalOpen && (
+                        <div className="pl-4 mt-2 grid grid-cols-2 gap-x-3 gap-y-2">
+                          {International.map(({ name, path, icon: Icon }) => (
+                            <Link
+                              key={path}
+                              href={path}
+                              className="flex items-center gap-2 text-gray-50 hover:text-green-400 transition-colors text-sm"
+                              onClick={() => setMobileMenuOpen(false)}
+                            >
+                              <Icon className="h-4 w-4 text-green-400" />
                               {name}
                             </Link>
                           ))}

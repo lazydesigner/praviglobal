@@ -81,8 +81,8 @@ export default function HomePage() {
           <Link href="/book-appointment" className="btn-primary text-lg px-8 py-4 hover:scale-105  text-white">
             Book Appointment <ArrowRight className="ml-2 h-5 w-5" />
           </Link>
-          <Link href="/contact" className="btn-secondary text-lg px-8 py-4 hover:scale-105">
-            Contact Us
+          <Link href="https://api.whatsapp.com/send/?phone=8009150040&text=Hello%21+I+would+like+to+know+more+about+your+services.&type=phone_number&app_absent=0" className="btn-secondary text-lg px-8 py-4 hover:scale-105">
+            whatsapp Us <ArrowRight className="ml-2 h-5 w-5" />
           </Link>
         </div>
 

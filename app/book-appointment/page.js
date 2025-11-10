@@ -358,11 +358,11 @@ export default function BookAppointmentPage() {
             Our team is ready to answer your questions and schedule your appointment
           </p>
           <a
-            href="tel:+919301522255"
+            href="tel:+918009150040"
             className="bg-white text-blue-600 px-8 py-4 rounded-full hover:bg-gray-100 transition-all hover:scale-105 inline-flex items-center text-xl font-bold"
           >
             <Phone className="mr-2 h-6 w-6" />
-            +91 9301522255
+            +91 8009150040
           </a>
           <p className="text-blue-100 mt-4 text-sm">Monday - Saturday: 9:00 AM - 6:00 PM</p>
         </div>

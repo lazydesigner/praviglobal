@@ -1,13 +1,58 @@
-import React from 'react';
-import { Check, Globe, FileText, Plane, Home, Phone, Mail, MapPin, Calendar, Users, Award, Heart } from 'lucide-react';
+'use client'
+import React, { useState } from 'react';
+import { Check, Globe, FileText, Plane, Home, Phone, Mail, MapPin, Calendar, Users, Award, Heart, Loader2, CheckCircle } from 'lucide-react';
 import Image from 'next/image';
 
+import PhoneInput from 'react-phone-input-2';
+import 'react-phone-input-2/lib/style.css';
 
 import HealthcareServices from '@/components/HealthcareServices';
 import HealthcareServices2 from '@/components/HealthcareServices2';
-import Link from 'next/link';
+import Link from 'next/link'; 
 
 export default function PraviIVFLanding() {
+  const [phone, setPhone] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
+  const [errorMsg, setErrorMsg] = useState('');
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    setErrorMsg('');
+    setSubmitted(false);
+
+    const formData = {
+      name: e.target.name.value,
+      email: e.target.email.value,
+      phone,
+      country: e.target.country.value,
+    };
+
+    try {
+      const response = await fetch('/api/consultation', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
+
+      const result = await response.json();
+
+      if (response.ok) {
+        setSubmitted(true);
+        e.target.reset();
+        setPhone('');
+      } else {
+        setErrorMsg(result.message || 'Something went wrong.');
+      }
+    } catch (error) {
+      console.error('Form submit error:', error);
+      setErrorMsg('Unable to submit. Please try again later.');
+    } finally {
+      setLoading(false);
+    }
+  };
+
   const doctors = [
     {
       name: "Dr. Monica Sachdev",
@@ -89,69 +134,72 @@ export default function PraviIVFLanding() {
     "Second opinion consultations"
   ];
 
+  const country = "tajikistan";
+  const codeC = 'tj';
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white">
-      
+
 
       {/* Hero Section */}
       <section className="relative overflow-hidden bg-gradient-to-br from-indigo-50 via-white to-rose-50 py-20 sm:py-32">
-    
-    {/* 1. Background Video Element (z-index -2 to go behind blurs) */}
-    <div className="absolute inset-0 z-0">
-        <video
+
+        {/* 1. Background Video Element (z-index -2 to go behind blurs) */}
+        <div className="absolute inset-0 z-0">
+          <video
             autoPlay
             loop
             muted
             playsInline
             className="w-full h-full object-cover"
-        >
+          >
             {/* Replace 'path-to-your-fertility-video.mp4' with the actual path */}
             <source src="/images/1.mp4" type="video/mp4" />
             Your browser does not support the video tag.
-        </video>
-    </div>
+          </video>
+        </div>
 
-    {/* 2. Semi-Transparent Overlay (z-index -1 to sit on top of video, but under content) */}
-    {/* This overlay maintains the light, airy feel and ensures text readability. */}
-    <div className="absolute inset-0  z-0" style={{ backgroundColor: '#005353ad' }} />
+        {/* 2. Semi-Transparent Overlay (z-index -1 to sit on top of video, but under content) */}
+        {/* This overlay maintains the light, airy feel and ensures text readability. */}
+        <div className="absolute inset-0  z-0" style={{ backgroundColor: '#005353ad' }} />
 
-    {/* Decorative Elements - Updated z-index to 1 (or default) to sit above the video/overlay */}
-    <div className="absolute top-0 right-0 w-96 h-96 bg-rose-200 rounded-full filter blur-3xl opacity-20 z-10"></div>
-    <div className="absolute bottom-0 left-0 w-96 h-96 bg-indigo-200 rounded-full filter blur-3xl opacity-20 z-10"></div>
-    
-    {/* Main Content (z-index 2 or higher for guaranteed visibility) */}
-    <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-20">
-        <div className="text-center max-w-4xl mx-auto">
+        {/* Decorative Elements - Updated z-index to 1 (or default) to sit above the video/overlay */}
+        <div className="absolute top-0 right-0 w-96 h-96 bg-rose-200 rounded-full filter blur-3xl opacity-20 z-10"></div>
+        <div className="absolute bottom-0 left-0 w-96 h-96 bg-indigo-200 rounded-full filter blur-3xl opacity-20 z-10"></div>
+
+        {/* Main Content (z-index 2 or higher for guaranteed visibility) */}
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-20">
+          <div className="text-center max-w-4xl mx-auto">
             <div className="inline-flex items-center space-x-2 bg-white px-4 py-2 rounded-full shadow-sm mb-6">
-                <Award className="w-5 h-5 text-rose-400" />
-                <span className="text-sm font-medium text-slate-700">International Center of Excellence</span>
+              <Award className="w-5 h-5 text-rose-400" />
+              <span className="text-sm font-medium text-slate-700">International Center of Excellence</span>
             </div>
             <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
-                Turning Your Dream of<br />
-                <span className="text-white">
-                    Parenthood into Reality
-                </span>
+              Turning Your Dream of<br />
+              <span className="text-white">
+                Parenthood into Reality
+              </span>
             </h2>
             <p className="text-xl text-white mb-10 leading-relaxed">
-                World-class fertility care with personalized support for international patients. 
-                Begin your journey with compassion, expertise, and unwavering commitment.
+              World-class fertility care with personalized support for international patients.
+              Begin your journey with compassion, expertise, and unwavering commitment.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Link href='https://api.whatsapp.com/send/?phone=8009150040&text=Hello%21+I+would+like+to+know+more+about+your+services.&type=phone_number&app_absent=0'><button className="bg-[#004b4b] hover:bg-[#004242] text-white px-8 py-4 rounded-full font-semibold text-lg shadow-lg hover:shadow-xl transition-all duration-200">
-                    Start Free Consultation
-                </button></Link>
-                <Link href="#internationalSupport" className="bg-white hover:bg-slate-100 text-[#005353] px-8 py-4 rounded-full font-semibold text-lg shadow-lg hover:shadow-xl transition-all duration-200">
-                    Learn More
-                </Link>
+              <Link href='https://api.whatsapp.com/send/?phone=8009150040&text=Hello%21+I+would+like+to+know+more+about+your+services.&type=phone_number&app_absent=0'><button className="bg-[#004b4b] hover:bg-[#004242] text-white px-8 py-4 rounded-full font-semibold text-lg shadow-lg hover:shadow-xl transition-all duration-200">
+                Start Free Consultation
+              </button></Link>
+              <Link href="#internationalSupport" className="bg-white hover:bg-slate-100 text-[#005353] px-8 py-4 rounded-full font-semibold text-lg shadow-lg hover:shadow-xl transition-all duration-200">
+                Learn More
+              </Link>
             </div>
+          </div>
         </div>
-    </div>
-</section>
+      </section>
 
       <section className="py-1 px-2 sm:px-2 bg-gradient-to-r -mt-10 relative z-10">
-      <HealthcareServices /></section>
+        <HealthcareServices /></section>
       <section className="py-1 px-2 sm:px-2 bg-gradient-to-r  relative z-10">
-      <HealthcareServices2 /></section>
+        <HealthcareServices2 /></section>
 
       {/* Online Consultation CTA */}
       <section className="py-16 px-4 sm:px-6 lg:px-8">
@@ -159,7 +207,7 @@ export default function PraviIVFLanding() {
           <div className="bg-gradient-to-br from-[#005353] to-[#004242] rounded-3xl shadow-2xl overflow-hidden">
             <div className="grid md:grid-cols-2 gap-8 p-8 sm:p-12">
               <div className="text-white">
-                <div className="inline-block bg-white text-gray-800 bg-opacity-20 rounded-full px-4 py-1 text-sm font-medium mb-4">
+                <div className="inline-block bg-white text-white bg-opacity-20 rounded-full px-4 py-1 text-sm font-medium mb-4">
                   For International Patient
                 </div>
                 <h3 className="text-3xl font-bold mb-4">Online Consultation</h3>
@@ -177,40 +225,91 @@ export default function PraviIVFLanding() {
               </div>
               <div className="bg-white rounded-2xl p-8 shadow-xl">
                 <h4 className="text-2xl font-bold text-slate-800 mb-6">Book Your Session</h4>
-                <form className="space-y-4">
+
+                <form onSubmit={handleSubmit} className="space-y-4">
                   <input
                     type="text"
+                    name="name"
                     placeholder="Full Name"
+                    required
                     className="w-full px-4 py-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-indigo-500 focus:border-transparent outline-none"
                   />
                   <input
                     type="email"
+                    name="email"
                     placeholder="Email Address"
+                    required
                     className="w-full px-4 py-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-indigo-500 focus:border-transparent outline-none"
                   />
-                  <input
-                    type="tel"
-                    placeholder="Phone Number"
-                    className="w-full px-4 py-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-indigo-500 focus:border-transparent outline-none"
+                  <PhoneInput
+                    country={codeC}
+                    value={phone}
+                    onChange={setPhone}
+                    enableSearch={true}
+                    preferredCountries={['in', 'us', 'mm', 'np', 'ir', 'iq', 'lk', 'pk', 'ca']}
+                    inputClass="!w-full !h-12 !text-base !rounded-lg !border !border-slate-300 !pl-12"
+                    buttonClass="!rounded-l-lg"
+                    dropdownClass="!text-base"
+                    placeholder="Enter phone number"
                   />
-                  <select className="w-full px-4 py-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-indigo-500 focus:border-transparent outline-none">
-                    <option>Select Country</option>
-                    <option>United States</option>
-                    <option>United Kingdom</option>
-                    <option>Canada</option>
-                    <option>Australia</option>
-                    <option>Other</option>
+                  <select
+                    name="country"
+                    required
+                    className="w-full px-4 py-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-indigo-500 focus:border-transparent outline-none"
+                  >
+                    <option selected={country == '' ? true : ''} value="">Select Country</option>
+                    <option  selected={country == 'afghanistan' ? true : ''} value="afghanistan">Afghanistan</option>
+                    <option  selected={country == 'cameroon' ? true : ''} value="cameroon">Cameroon</option>
+                    <option  selected={country == 'canada' ? true : ''} value="canada">Canada</option>
+                    <option  selected={country == 'ethiopia' ? true : ''} value="ethiopia">Ethiopia</option>
+                    <option  selected={country == 'india' ? true : ''} value="india">India</option>
+                    <option  selected={country == 'iran' ? true : ''} value="iran">Iran</option>
+                    <option  selected={country == 'iraq' ? true : ''} value="iraq">Iraq</option>
+                    <option  selected={country == 'kazakhstan' ? true : ''} value="kazakhstan">Kazakhstan</option>
+                    <option  selected={country == 'maldives' ? true : ''} value="maldives">Maldives</option>
+                    <option  selected={country == 'myanmarq' ? true : ''} value="myanmarq">Myanmar</option>
+                    <option  selected={country == 'oman' ? true : ''} value="oman">Oman</option>
+                    <option  selected={country == 'pakistan' ? true : ''} value="pakistan">Pakistan</option>
+                    <option  selected={country == 'sri-lanka' ? true : ''} value="sri-lanka">Sri Lanka</option>
+                    <option  selected={country == 'tajikistan' ? true : ''} value="tajikistan">Tajikistan</option>
+                    <option  selected={country == 'uzbekistan' ? true : ''} value="uzbekistan">Uzbekistan</option>
+                    <option  selected={country == 'united-state' ? true : ''} value='united-state'>United States</option> 
+                    <option  selected={country == 'australia' ? true : ''} value='australia'>Australia</option>
+                    <option  selected={country == 'yemen' ? true : ''} value="yemen">Yemen</option>
+                    <option  selected={country == 'other' ? true : ''} value='other'>Other</option>
                   </select>
+
                   <button
                     type="submit"
-                    className="w-full bg-rose-500 hover:bg-rose-600 text-white py-4 rounded-lg font-semibold text-lg shadow-lg hover:shadow-xl transition-all duration-200"
+                    disabled={loading}
+                    className={`w-full flex items-center justify-center gap-2 bg-rose-500 hover:bg-rose-600 text-white py-4 rounded-lg font-semibold text-lg shadow-lg hover:shadow-xl transition-all duration-200 disabled:opacity-70 disabled:cursor-not-allowed`}
                   >
-                    Schedule Consultation
+                    {loading ? (
+                      <>
+                        <Loader2 className="w-5 h-5 animate-spin" />
+                        Submitting...
+                      </>
+                    ) : (
+                      "Schedule Consultation"
+                    )}
                   </button>
+
+                  {submitted && (
+                    <div className="mt-4 flex items-center justify-center text-green-600 font-medium gap-2">
+                      <CheckCircle className="w-5 h-5" /> Consultation booked successfully!
+                    </div>
+                  )}
+
+                  {errorMsg && (
+                    <div className="mt-4 text-center text-red-500 font-medium">
+                      {errorMsg}
+                    </div>
+                  )}
+
+                  <p className="text-xs text-slate-500 mt-4 text-center">
+                    Free consultation • No obligation • 100% confidential
+                  </p>
                 </form>
-                <p className="text-xs text-slate-500 mt-4 text-center">
-                  Free consultation • No obligation • 100% confidential
-                </p>
               </div>
             </div>
           </div>
@@ -278,14 +377,14 @@ export default function PraviIVFLanding() {
                 <div className="p-8">
                   <div className="flex justify-center mb-6">
                     <div className="w-32 h-32 bg-gradient-to-br from-indigo-400 to-rose-400 rounded-full flex items-center justify-center shadow-xl overflow-hidden">
-                       <Image 
-                       src={doctor.image} 
-                       alt={doctor.name} 
-                       width={130} 
-                       height={130} 
-                       className=" object-cover group-hover:scale-105 transition-transform duration-300"
-                       
-                       />
+                      <Image
+                        src={doctor.image}
+                        alt={doctor.name}
+                        width={130}
+                        height={130}
+                        className=" object-cover group-hover:scale-105 transition-transform duration-300"
+
+                      />
                     </div>
                   </div>
                   <h4 className="text-2xl font-bold text-slate-800 mb-2 text-center">{doctor.name}</h4>
@@ -343,7 +442,7 @@ export default function PraviIVFLanding() {
             </div>
           </div>
         </div>
-      </section> 
+      </section>
     </div>
   );
 }

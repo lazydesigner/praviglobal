@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import nodemailer from 'nodemailer';
 
 export async function POST(request) {
   try {
@@ -21,6 +22,54 @@ export async function POST(request) {
         { status: 400 }
       );
     }
+
+    // Create transporter
+    const transporter = nodemailer.createTransport({
+      host: process.env.SMTP_HOST,
+      port: Number(process.env.SMTP_PORT),
+      secure: process.env.SMTP_SECURE === 'true', // true for 465, false for other ports
+      auth: {
+        user: process.env.SMTP_USER,
+        pass: process.env.SMTP_PASS,
+      }, 
+    });
+
+    const Mails = [
+      'info@praviivf.in',
+      'ritshukla@gmail.com',
+      'deepakbaradwaj933@gmail.com'
+    ]
+
+    // Email options
+    const mailOptions = {
+      from: `"Pravi IVF Clinic" <${process.env.SMTP_USER}>`, // Sender address
+      to: Mails, // Where you receive contact emails
+      subject: `New Inquiry from ${name}`,
+      html: `
+        <h2>New Contact Message</h2>
+        <p><strong>Name:</strong> ${name}</p>
+        <p><strong>Email:</strong> ${email}</p>
+        <p><strong>Phone:</strong> ${phone}</p>
+        <p><strong>Message:</strong></p>
+        <p>${message}</p>
+        <hr/>
+        <p>Sent from your website contact form.</p>
+      `,
+    };
+
+    // Send email
+    await transporter.sendMail(mailOptions);
+
+    // return new Response(JSON.stringify({ success: true }), { status: 200 });
+
+    return NextResponse.json(
+      { 
+        success: true,
+        message: 'Thank you for contacting us. We will get back to you soon.' 
+      },
+      { status: 200 }
+    );
+
 
     // Log the contact form submission (in production, you'd save to database or send email)
     console.log('Contact Form Submission:', {

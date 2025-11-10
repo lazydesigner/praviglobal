@@ -7,6 +7,7 @@ export default function Footer() {
   const quickLinks = [
     { name: 'Home', path: '/' },
     { name: 'About Us', path: '/about' },
+    { name: 'Blogs', path: '/blogs' },
     { name: 'Services', path: '/services' },
     { name: 'Doctors', path: '/doctors' },
     { name: 'Gallery', path: '/gallery' },
@@ -14,12 +15,12 @@ export default function Footer() {
   ];
 
   const services = [
-    'IVF Treatment',
-    'ICSI',
-    'IUI',
-    'Egg Freezing',
-    'Male Infertility',
-    'Surrogacy'
+    {service: 'IVF Treatment', url:'/ivf'},
+    {service: 'ICSI', url:'/icsi'},
+    {service: 'IUI', url:'/iui'},
+    {service: 'Egg Freezing', url:'/egg-freezing'},
+    {service: 'Male Infertility', url:'/male-infertility'},
+    {service: 'Surrogacy', url:'/surrogacy'},
   ];
 
   return (
@@ -96,11 +97,11 @@ export default function Footer() {
               {services.map((service) => (
                 <li key={service}>
                   <Link
-                    href="/services"
+                    href={service.url}
                     className="text-gray-400 hover:text-white transition-colors text-sm flex items-center group"
                   >
                     <ArrowRight className="h-4 w-4 mr-2 opacity-0 group-hover:opacity-100 -ml-6 group-hover:ml-0 transition-all" />
-                    {service}
+                    {service.service}
                   </Link>
                 </li>
               ))}

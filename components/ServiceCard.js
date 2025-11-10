@@ -1,4 +1,5 @@
 import { Heart, Users, Shield, ChevronRight } from 'lucide-react';
+import Link from 'next/link';
 
 const iconMap = {
   Heart: Heart,
@@ -22,11 +23,12 @@ export default function ServiceCard({ service }) {
       <p className="text-gray-600 mb-6 leading-relaxed">
         {service.description}
       </p>
-      
+      <Link href={service.url}>
       <button className="text-blue-600 font-semibold flex items-center group-hover:gap-2 transition-all">
         Learn More
         <ChevronRight className="h-5 w-5 ml-1" />
       </button>
+      </Link>
     </div>
   );
 }

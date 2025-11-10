@@ -1,23 +1,23 @@
 'use client';
 import React, { useState } from 'react';
-import { 
-  Users,
+import {
   Award,
-  Heart,
+  Calendar,
   CheckCircle2,
   Clock,
-  Phone,
-  Calendar,
+  Heart,
   MapPin,
+  Microscope,
+  Phone,
+  Shield,
   Star,
   Baby,
-  Shield,
   Globe,
   ChevronRight,
-  Activity
+  Snowflake
 } from 'lucide-react';
 
-const DonorServicesPage = () => {
+const EggFreezingPage = () => {
   const [activeTab, setActiveTab] = useState('overview');
 
   return (
@@ -33,16 +33,17 @@ const DonorServicesPage = () => {
             <div>
               <div className="flex items-center gap-2 mb-4">
                 <Award className="w-8 h-8 text-yellow-400" />
-                <span className="text-blue-100 font-semibold">Trusted Donor Programs in Delhi</span>
+                <span className="text-blue-100 font-semibold">Preserve Your Fertility Future</span>
               </div>
               <h1 className="text-4xl md:text-5xl font-bold mb-4 leading-tight">
-                Donor Services at Pravi Global IVF Delhi
+                Egg Freezing at Pravi Global IVF Delhi
               </h1>
               <h2 className="text-2xl md:text-3xl font-semibold mb-6 text-blue-100">
-                Ethical, Confidential & Compassionate Donor Programs
+                Advanced Oocyte Cryopreservation for Women
               </h2>
               <p className="text-lg text-blue-100 mb-8 leading-relaxed">
-                Our **Donor Services** at Pravi Global IVF Delhi offer reliable and ethical access to **egg, sperm, and embryo donors**. We follow strict screening, legal, and ethical guidelines to help couples and individuals build families safely and confidentially.
+                Our **Egg Freezing program** empowers women to preserve their fertility for the future.  
+                Using advanced vitrification technology, **Pravi Global IVF Delhi** ensures high survival and fertilization rates — giving women control over when to start their family.
               </p>
               <div className="flex flex-wrap gap-4 mb-8">
                 <button className="bg-white text-blue-600 px-8 py-4 rounded-lg font-semibold hover:bg-blue-50 transition-all shadow-lg hover:shadow-xl flex items-center gap-2">
@@ -79,12 +80,12 @@ const DonorServicesPage = () => {
                     </div>
                   </div>
                   <div className="flex items-center gap-4">
-                    <div className="w-16 h-16 bg-green-400 rounded-full flex items-center justify-center">
-                      <Users className="w-8 h-8 text-blue-900" />
+                    <div className="w-16 h-16 bg-blue-300 rounded-full flex items-center justify-center">
+                      <Snowflake className="w-8 h-8 text-blue-900" />
                     </div>
                     <div>
-                      <div className="text-3xl font-bold">1000+</div>
-                      <div className="text-blue-100">Successful Donor Cycles</div>
+                      <div className="text-3xl font-bold">99%</div>
+                      <div className="text-blue-100">Egg Survival Rate</div>
                     </div>
                   </div>
                   <div className="flex items-center gap-4">
@@ -93,7 +94,7 @@ const DonorServicesPage = () => {
                     </div>
                     <div>
                       <div className="text-3xl font-bold">High</div>
-                      <div className="text-blue-100">Success Rates</div>
+                      <div className="text-blue-100">Pregnancy Success Rates</div>
                     </div>
                   </div>
                 </div>
@@ -107,16 +108,16 @@ const DonorServicesPage = () => {
       <div className="max-w-7xl mx-auto px-4 py-16">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900">
-            Why Choose Our Donor Services in Delhi?
+            Why Choose Egg Freezing at Pravi Global IVF Delhi?
           </h2>
-          <p className="text-lg text-gray-600">Ethical practices, expert handling, and full confidentiality</p>
+          <p className="text-lg text-gray-600">Safe, reliable, and advanced fertility preservation for modern women</p>
         </div>
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
           {[
-            { icon: Heart, title: 'Compassionate Guidance', desc: 'Supportive care for both donors and recipients' },
-            { icon: Shield, title: 'Strict Screening', desc: 'Medical and genetic tests ensure donor suitability' },
-            { icon: Globe, title: 'Confidential Process', desc: 'Your privacy and anonymity are protected at every step' },
-            { icon: Users, title: 'Experienced Specialists', desc: 'Led by renowned IVF doctors and embryologists' }
+            { icon: Microscope, title: 'Latest Vitrification Tech', desc: 'State-of-the-art freezing to protect egg quality' },
+            { icon: Shield, title: 'Safe & Secure Storage', desc: 'Cryopreservation under strict monitoring' },
+            { icon: Heart, title: 'Empowering Women', desc: 'Choose motherhood at your convenience' },
+            { icon: Globe, title: 'Global Standards', desc: 'Compliant with ICMR & international IVF protocols' }
           ].map((item, idx) => {
             const Icon = item.icon;
             return (
@@ -138,9 +139,9 @@ const DonorServicesPage = () => {
           <div className="border-b border-gray-200 bg-gray-50">
             <div className="flex overflow-x-auto">
               {[
-                { id: 'overview', label: 'About Donor Services' },
-                { id: 'types', label: 'Types of Donor Programs' },
-                { id: 'process', label: 'Our Process' },
+                { id: 'overview', label: 'About Egg Freezing' },
+                { id: 'process', label: 'Freezing Process' },
+                { id: 'benefits', label: 'Benefits' },
                 { id: 'faqs', label: 'FAQs' }
               ].map((tab) => (
                 <button
@@ -161,37 +162,26 @@ const DonorServicesPage = () => {
           <div className="p-8 md:p-12">
             {activeTab === 'overview' && (
               <div className="space-y-6">
-                <h2 className="text-3xl font-bold text-gray-900 mb-4">What Are Donor Services?</h2>
+                <h2 className="text-3xl font-bold text-gray-900 mb-4">What Is Egg Freezing?</h2>
                 <p className="text-gray-700 text-lg leading-relaxed">
-                  **Donor services** provide healthy, medically screened eggs, sperm, or embryos to couples and individuals struggling with infertility. These services are ideal for cases involving poor egg/sperm quality, genetic issues, or single-parent conception.
+                  **Egg freezing (oocyte cryopreservation)** allows women to preserve their eggs for future use.  
+                  The eggs are frozen using rapid cooling (vitrification) to maintain their health and potential for fertilization later in life.
                 </p>
                 <p className="text-gray-700 text-lg leading-relaxed">
-                  At **Pravi Global IVF Delhi**, we offer legal, ethical, and transparent donor programs following ICMR guidelines, ensuring safety and confidentiality for all parties.
+                  At **Pravi Global IVF Delhi**, our advanced technology and lab precision ensure optimal egg survival and successful fertilization rates after thawing.
                 </p>
-              </div>
-            )}
-
-            {activeTab === 'types' && (
-              <div>
-                <h2 className="text-3xl font-bold mb-6 text-gray-900">Types of Donor Programs We Offer</h2>
-                <ul className="space-y-3 text-gray-700 leading-relaxed">
-                  <li><CheckCircle2 className="inline text-green-600 mr-2"/> **Egg Donor Program** – For women with poor egg quality or premature ovarian failure.</li>
-                  <li><CheckCircle2 className="inline text-green-600 mr-2"/> **Sperm Donor Program** – For male infertility cases involving low sperm count or motility.</li>
-                  <li><CheckCircle2 className="inline text-green-600 mr-2"/> **Embryo Donor Program** – For couples where both partners have infertility issues.</li>
-                  <li><CheckCircle2 className="inline text-green-600 mr-2"/> **Anonymous & Confidential** – We ensure full legal and ethical compliance for all donor matches.</li>
-                </ul>
               </div>
             )}
 
             {activeTab === 'process' && (
               <div>
-                <h2 className="text-3xl font-bold mb-6 text-gray-900">Our Donor Service Process</h2>
+                <h2 className="text-3xl font-bold mb-6 text-gray-900">Egg Freezing Process</h2>
                 <div className="space-y-6">
                   {[
-                    { step: '01', title: 'Consultation & Counseling', desc: 'Detailed evaluation of the recipient’s needs and counseling for both donor and recipient.' },
-                    { step: '02', title: 'Medical & Genetic Screening', desc: 'Donors undergo rigorous health, psychological, and genetic testing.' },
-                    { step: '03', title: 'Matching & Legal Clearance', desc: 'We ensure compatibility and complete all required documentation and legal processes.' },
-                    { step: '04', title: 'IVF / IUI Procedure', desc: 'The donor eggs or sperm are used for fertilization under expert supervision in our advanced IVF lab.' }
+                    { step: '01', title: 'Initial Consultation', desc: 'Fertility assessment, ovarian reserve tests, and counseling.' },
+                    { step: '02', title: 'Ovarian Stimulation', desc: 'Medications to stimulate multiple egg development over 10–12 days.' },
+                    { step: '03', title: 'Egg Retrieval', desc: 'Eggs collected using ultrasound-guided aspiration under anesthesia.' },
+                    { step: '04', title: 'Vitrification (Freezing)', desc: 'Collected eggs are rapidly frozen and stored in liquid nitrogen tanks.' }
                   ].map((step, idx) => (
                     <div key={idx} className="flex gap-6 items-start">
                       <div className="flex-shrink-0">
@@ -209,15 +199,28 @@ const DonorServicesPage = () => {
               </div>
             )}
 
+            {activeTab === 'benefits' && (
+              <div>
+                <h2 className="text-3xl font-bold mb-6 text-gray-900">Benefits of Egg Freezing</h2>
+                <ul className="space-y-3 text-gray-700 leading-relaxed">
+                  <li><CheckCircle2 className="inline text-green-600 mr-2" />Preserves fertility for career or personal planning</li>
+                  <li><CheckCircle2 className="inline text-green-600 mr-2" />Ideal for medical reasons (chemotherapy, endometriosis, etc.)</li>
+                  <li><CheckCircle2 className="inline text-green-600 mr-2" />Maintains egg quality despite age-related decline</li>
+                  <li><CheckCircle2 className="inline text-green-600 mr-2" />Enables use of your own genetic material later in life</li>
+                  <li><CheckCircle2 className="inline text-green-600 mr-2" />Safe, proven, and globally accepted technology</li>
+                </ul>
+              </div>
+            )}
+
             {activeTab === 'faqs' && (
               <div>
-                <h2 className="text-3xl font-bold mb-8 text-gray-900">Frequently Asked Questions About Donor Services</h2>
+                <h2 className="text-3xl font-bold mb-8 text-gray-900">Frequently Asked Questions About Egg Freezing</h2>
                 <div className="space-y-4">
                   {[
-                    { q: 'Are donor programs legal in India?', a: 'Yes, all donor programs are regulated by ICMR guidelines and are completely legal when done ethically through licensed centers.' },
-                    { q: 'Is the donor’s identity disclosed?', a: 'No. All donor programs at Pravi Global IVF Delhi are anonymous and confidential, ensuring full privacy for all parties.' },
-                    { q: 'Who can opt for donor services?', a: 'Couples with failed IVF cycles, poor egg/sperm quality, or genetic disorders, as well as single parents, can opt for donor programs.' },
-                    { q: 'Are donors medically screened?', a: 'Absolutely. Donors undergo extensive health, genetic, and infectious disease screening before approval.' }
+                    { q: 'Is egg freezing safe?', a: 'Yes. It’s a safe and minimally invasive process using advanced vitrification to prevent damage during freezing.' },
+                    { q: 'What is the ideal age to freeze eggs?', a: 'The best time is between 25–35 years, when egg quality is highest.' },
+                    { q: 'How long can eggs be stored?', a: 'Eggs can be safely stored for many years without loss of quality.' },
+                    { q: 'Can frozen eggs be used for IVF later?', a: 'Yes, thawed eggs are fertilized through ICSI to achieve pregnancy when desired.' }
                   ].map((faq, idx) => (
                     <div key={idx} className="bg-white border-2 border-gray-200 rounded-xl p-6 hover:shadow-lg transition-all">
                       <h3 className="font-bold text-lg mb-3 text-gray-900 flex items-start gap-3">
@@ -238,10 +241,10 @@ const DonorServicesPage = () => {
       <div className="bg-gradient-to-r from-blue-600 via-blue-700 to-blue-800 text-white py-16">
         <div className="max-w-4xl mx-auto px-4 text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Start Your Donor Program with Pravi Global IVF Delhi
+            Preserve Your Fertility with Egg Freezing at Pravi Global IVF Delhi
           </h2>
           <p className="text-xl text-blue-100 mb-8 leading-relaxed">
-            Safe, legal, and compassionate donor services — helping families grow with care, confidentiality, and medical excellence.
+            Choose flexibility, security, and control over your fertility with advanced egg freezing technology and expert care.
           </p>
           <div className="flex flex-wrap justify-center gap-4 mb-8">
             <a 
@@ -262,4 +265,4 @@ const DonorServicesPage = () => {
   );
 };
 
-export default DonorServicesPage;
+export default EggFreezingPage;

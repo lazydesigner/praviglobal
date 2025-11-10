@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import nodemailer from 'nodemailer';
 
 export async function POST(request) {
   try {
@@ -43,6 +44,23 @@ export async function POST(request) {
       );
     }
 
+     // Create transporter
+        const transporter = nodemailer.createTransport({
+          host: process.env.SMTP_HOST,
+          port: Number(process.env.SMTP_PORT),
+          secure: process.env.SMTP_SECURE === 'true', // true for 465, false for other ports
+          auth: {
+            user: process.env.SMTP_USER,
+            pass: process.env.SMTP_PASS,
+          }, 
+        });
+    
+        const Mails = [
+          'info@praviivf.in',
+          'ritshukla@gmail.com',
+          'deepakbaradwaj933@gmail.com'
+        ]
+
     // Log the appointment request (in production, you'd save to database)
     console.log('Appointment Request:', {
       name,
@@ -55,6 +73,26 @@ export async function POST(request) {
       message: message || 'No additional message',
       timestamp: new Date().toISOString()
     });
+
+    const mailOptions = {
+      from: `"Pravi IVF Clinic" <${process.env.SMTP_USER}>`, // Sender address
+      to: Mails, // Where you receive contact emails
+      subject: `New Appointment Request - ${name}`,
+      html: `
+          <h2>New Appointment Request</h2>
+          <p><strong>Patient Name:</strong> ${name}</p>
+          <p><strong>Email:</strong> ${email}</p>
+          <p><strong>Phone:</strong> ${phone}</p>
+          <p><strong>Service:</strong> ${service}</p>
+          <p><strong>Doctor:</strong> ${doctor || 'Any available'}</p>
+          <p><strong>Preferred Date:</strong> ${preferredDate}</p>
+          <p><strong>Preferred Time:</strong> ${preferredTime}</p>
+          <p><strong>Message:</strong> ${message || 'None'}</p>
+        `,
+    };
+
+    // Send email
+    await transporter.sendMail(mailOptions);
 
     // In production, you would:
     // 1. Save to database with status: 'pending'
