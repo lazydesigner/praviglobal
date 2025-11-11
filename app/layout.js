@@ -9,34 +9,36 @@ const inter = Inter({ subsets: ['latin'] });
 
 export const metadata = {
   title: {
-    default: `${hospitalInfo.name} - Leading IVF & Fertility Center in Raipur`,
-    template: `%s | ${hospitalInfo.name}`
+    default: `Pravi Global IVF Polyclinic - Best IVF Centre in Delhi`, 
   },
-  description: 'Leading IVF and fertility center in Raipur, Chhattisgarh. Expert fertility specialists offering IVF, ICSI, IUI, egg freezing, and comprehensive reproductive healthcare with high success rates.',
-  keywords: 'IVF Raipur, fertility clinic Raipur, IVF treatment, ICSI, IUI, egg freezing, male infertility, female infertility, surrogacy, fertility specialist Raipur, best IVF center Chhattisgarh',
-  authors: [{ name: hospitalInfo.name }],
-  creator: hospitalInfo.name,
-  publisher: hospitalInfo.name,
+  description:
+    'Pravi Global IVF Polyclinic is the best IVF centre in Delhi offering advanced fertility treatments including IVF, ICSI, IUI, surrogacy, and egg donation.',
+  keywords:
+    'Best IVF centre in Delhi, Top IVF clinic in Delhi, Best fertility clinic in Delhi, IVF hospital in Delhi, IVF treatment in Delhi, Best IVF doctor in Delhi, fertility specialist Delhi, IUI, ICSI, surrogacy, egg freezing, male infertility, female infertility',
+  authors: [{ name: 'Pravi Global IVF Polyclinic' }],
+  creator: 'Pravi Global IVF Polyclinic',
+  publisher: 'Pravi Global IVF Polyclinic',
   formatDetection: {
     email: false,
     address: false,
     telephone: false,
   },
-  metadataBase: new URL('https://praviivf.in'),
+  metadataBase: new URL('https://praviglobalivf.com/'),
   alternates: {
-    canonical: '/',
+    canonical: 'https://praviglobalivf.com/',
   },
   openGraph: {
-    title: `${hospitalInfo.name} - Leading IVF & Fertility Center`,
-    description: 'Expert fertility care with advanced IVF treatments and personalized support. Helping families grow with compassion and expertise.',
-    url: 'https://praviivf.in',
-    siteName: hospitalInfo.name,
+    title: 'Pravi Global IVF Polyclinic - Best IVF Centre in Delhi',
+    description:
+      'Looking for the best IVF centre in Delhi? Pravi Global IVF Polyclinic offers IVF, ICSI, IUI, surrogacy, and advanced fertility care with top IVF doctors in Delhi.',
+    url: 'https://praviglobalivf.com/',
+    siteName: 'Pravi Global IVF Polyclinic',
     images: [
       {
         url: '/og-image.jpg',
         width: 1200,
         height: 630,
-        alt: hospitalInfo.name,
+        alt: 'Pravi Global IVF Polyclinic - Best IVF Centre in Delhi',
       },
     ],
     locale: 'en_IN',
@@ -44,8 +46,9 @@ export const metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: `${hospitalInfo.name} - Leading IVF & Fertility Center`,
-    description: 'Expert fertility care with advanced IVF treatments and personalized support.',
+    title: 'Pravi Global IVF Polyclinic - Best IVF Centre in Delhi',
+    description:
+      'Top fertility clinic in Delhi offering advanced IVF, ICSI, and IUI treatments with high success rates. Compassionate care from expert IVF doctors.',
     images: ['/og-image.jpg'],
   },
   robots: {
@@ -63,6 +66,7 @@ export const metadata = {
     google: 'your-google-verification-code',
   },
 };
+
 
 export default function RootLayout({ children }) {
   const organizationSchema = generateOrganizationSchema();

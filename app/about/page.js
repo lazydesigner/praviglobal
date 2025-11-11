@@ -10,6 +10,9 @@ export const metadata = {
     title: 'About Pravi IVF - Our Story & Mission',
     description: 'Leading fertility center with 15+ years of excellence in reproductive medicine',
   },
+  alternates: {
+    canonical: 'https://praviglobalivf.com/about',
+  }
 };
 
 export default function AboutPage() {
@@ -28,7 +31,7 @@ export default function AboutPage() {
             About Pravi IVF
           </h1>
           <p className="text-xl md:text-2xl text-blue-100 max-w-3xl mx-auto leading-relaxed">
-            Leading the way in fertility care with compassion, expertise, and innovation since 2008
+            Leading the way in fertility care with compassion, expertise, and innovation since 2015
           </p>
         </div>
       </section>

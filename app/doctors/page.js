@@ -5,13 +5,42 @@ import { doctors } from '@/lib/data';
 import DoctorCard from '@/components/DoctorCard';
 
 export const metadata = {
-  title: 'Our Fertility Specialists - Expert Doctors Team',
-  description: 'Meet our team of highly qualified fertility specialists and reproductive endocrinologists dedicated to helping you achieve parenthood.',
+  title: "Our IVF Specialists in Delhi | Best Fertility Doctors - Pravi Global IVF Polyclinic",
+  description:
+    "Meet the top IVF specialists in Delhi at Pravi Global IVF Polyclinic — Dr. Monica Sachdev, Dr. Rit Shukla, and Dr. Sakshi Tandon. Experienced fertility experts offering advanced IVF, ICSI, and reproductive care.",
+  robots: {
+    index: true,
+    follow: true,
+  },
+  alternates: {
+    canonical: "https://praviglobalivf.com/doctors/",
+  },
   openGraph: {
-    title: 'Meet Our Expert Fertility Specialists',
-    description: 'Experienced doctors committed to your fertility journey',
+    title: "Our IVF Specialists in Delhi | Best Fertility Doctors - Pravi Global IVF Polyclinic",
+    description:
+      "Know your fertility experts — Dr. Monica Sachdev, Dr. Rit Shukla, and Dr. Sakshi Tandon at Pravi Global IVF Polyclinic, Delhi. Leading IVF and reproductive medicine professionals with 18+ years of experience.",
+    url: "https://praviglobalivf.com/doctors/",
+    siteName: "Pravi Global IVF Polyclinic",
+    images: [
+      {
+        url: "/images/ivf-doctors-delhi.jpg",
+        width: 1200,
+        height: 630,
+        alt: "IVF Specialists in Delhi - Pravi Global IVF Polyclinic",
+      },
+    ],
+    locale: "en_IN",
+    type: "profile",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Our IVF Specialists in Delhi | Best Fertility Doctors - Pravi Global IVF Polyclinic",
+    description:
+      "Meet our expert fertility doctors — Dr. Monica Sachdev, Dr. Rit Shukla, and Dr. Sakshi Tandon. Top IVF specialists in Delhi with years of experience in assisted reproduction.",
+    images: ["/images/ivf-doctors-delhi.jpg"],
   },
 };
+
 
 export default function DoctorsPage() {
   return (

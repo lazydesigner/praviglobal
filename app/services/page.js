@@ -10,6 +10,9 @@ export const metadata = {
     title: 'Fertility Services at Pravi IVF',
     description: 'Complete range of advanced fertility treatments tailored to your needs',
   },
+  alternates: {
+    canonical: 'https://praviglobalivf.com/services',
+  }
 };
 
 const iconMap = {
