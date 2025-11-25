@@ -109,7 +109,7 @@ export default function BookAppointmentPage() {
                 <div>
                   <h3 className="font-semibold text-red-900 mb-2">Something Went Wrong</h3>
                   <p className="text-red-800">
-                    We couldn't process your request. Please try again or call us directly at +91 9301522255.
+                    We couldn't process your request. Please try again or call us directly at +91 8009150040.
                   </p>
                 </div>
               </div>

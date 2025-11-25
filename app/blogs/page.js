@@ -8,6 +8,8 @@ import { BlogCategories } from '@/components/BlogCategories';
 import Post from '@/models/Post';
 import dbConnect from '@/lib/dbConnect';
 
+export const dynamic = "force-dynamic"
+
 async function getPosts() {
   await dbConnect()
   const posts = await Post.find({ status: "published" })
