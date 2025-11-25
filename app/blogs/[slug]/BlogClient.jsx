@@ -28,7 +28,7 @@ export default function BlogClient({ blog, relatedBlogs }) {
             {/* Paste your existing JSX from the previous component here */}
 
             <section className="relative bg-gradient-to-r from-blue-600 to-blue-800 text-white py-16">
-                <div className="container mx-auto px-4">
+                <div className="max-w-7xl container mx-auto px-4">
                     <a href="/blogs" className="inline-flex items-center gap-2 text-white mb-6">
                         <ArrowLeft className="w-5 h-5" /> Back to all articles
                     </a>
@@ -37,8 +37,11 @@ export default function BlogClient({ blog, relatedBlogs }) {
 
                     <div className="flex gap-6">
                         <div className="flex items-center gap-2">
-                            <Calendar className="w-5 h-5" />
-                            {new Date(blog.publishedAt).toLocaleDateString()}
+                            <Calendar className="w-5 h-5" /> 
+                            {new Date(blog.publishedAt).toLocaleDateString("en-US", {
+                            month: "short", 
+                            year: "numeric",
+                            })}
                         </div>
 
                         <div className="flex items-center gap-2">
@@ -53,22 +56,7 @@ export default function BlogClient({ blog, relatedBlogs }) {
                 <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-12">
                     {/* Main Content */}
                     <article className="flex-1 bg-white rounded-2xl shadow-lg p-8 md:p-12">
-                        {/* Author Info */}
-                        <div className="flex items-center gap-4 pb-8 mb-8 border-b border-gray-200">
-                            <div className="relative w-16 h-16 rounded-full flex items-center justify-center text-white text-xl font-semibold">
-                                <Image
-                                    src="/images/logo2.jpg"    // replace with actual avatar image
-                                    alt="Dr. Deep"
-                                    fill
-                                    className="object-cover"
-                                />
-                            </div>
-                            <div>
-                                <p className="font-semibold text-gray-900 text-lg">Dr. </p>
-                                {/* <p className="text-gray-600">{blog.author.role}</p> */}
-                            </div>
-                        </div>
-
+                         
                         {/* Featured Image Placeholder */}
                         <div className="relative h-80 bg-gradient-to-br from-blue-50 to-blue-100 rounded-2xl flex items-center justify-center mb-8 overflow-hidden">
                             <Image
@@ -105,10 +93,10 @@ export default function BlogClient({ blog, relatedBlogs }) {
                                 Our experienced team at Pravi IVF is here to support you every step of the way
                             </p>
                             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                                <a href="/book-appointment" className="px-8 py-3 bg-white text-blue-600 font-semibold rounded-lg hover:bg-blue-50 transition-colors">
+                                <a href="https://praviglobalivf.com/book-appointment" className="px-8 py-3 bg-white text-blue-600 font-semibold rounded-lg hover:bg-blue-50 transition-colors">
                                     Book Consultation
                                 </a>
-                                <a href="/contact" className="px-8 py-3 bg-blue-700 text-white font-semibold rounded-lg hover:bg-blue-800 transition-colors border-2 border-white">
+                                <a href="https://praviglobalivf.com/contact" className="px-8 py-3 bg-blue-700 text-white font-semibold rounded-lg hover:bg-blue-800 transition-colors border-2 border-white">
                                     Contact Us
                                 </a>
                             </div>
@@ -117,8 +105,9 @@ export default function BlogClient({ blog, relatedBlogs }) {
 
                     {/* Sidebar */}
                     <aside className="lg:w-80 space-y-8">
+                        <div className="sticky top-24">
                         {/* Share Section */}
-                        <div className="bg-white rounded-2xl shadow-lg p-6">
+                        <div className="bg-white rounded-2xl shadow-lg p-6 mb-3">
                             <h3 className="font-bold text-gray-900 text-lg mb-4 flex items-center gap-2">
                                 <Share2 className="w-5 h-5" />
                                 Share This Article
@@ -162,12 +151,12 @@ export default function BlogClient({ blog, relatedBlogs }) {
                         </div>
 
                         {/* Quick Contact */}
-                        <div className="bg-gradient-to-br from-blue-600 to-blue-800 rounded-2xl shadow-lg p-6 text-white">
+                        <div className="bg-gradient-to-br from-blue-600 to-blue-800 rounded-2xl shadow-lg p-6 text-white mb-3">
                             <h3 className="font-bold text-xl mb-3">Have Questions?</h3>
                             <p className="text-blue-100 mb-6">Our fertility specialists are here to help you</p>
                             <div className="space-y-3">
-                                <a href="tel:+919301522255" className="block w-full px-4 py-3 bg-white text-blue-600 font-semibold rounded-lg hover:bg-blue-50 transition-colors text-center">
-                                    📞 Call: +91 9301522255
+                                <a href="tel:+918009150040" className="block w-full px-4 py-3 bg-white text-blue-600 font-semibold rounded-lg hover:bg-blue-50 transition-colors text-center">
+                                    📞 Call: +91 8009150040
                                 </a>
                                 <a href="mailto:info@praviivf.in" className="block w-full px-4 py-3 bg-blue-700 text-white font-semibold rounded-lg hover:bg-blue-800 transition-colors text-center">
                                     ✉️ Email Us
@@ -206,6 +195,7 @@ export default function BlogClient({ blog, relatedBlogs }) {
                                 </a>
                             </div>
                         )}
+                        </div>
                     </aside>
                 </div>
             </div>

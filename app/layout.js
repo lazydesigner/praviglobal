@@ -35,7 +35,7 @@ export const metadata = {
     siteName: 'Pravi Global IVF Polyclinic',
     images: [
       {
-        url: '/og-image.jpg',
+        url: '/images/og-image.jpg',
         width: 1200,
         height: 630,
         alt: 'Pravi Global IVF Polyclinic - Best IVF Centre in Delhi',
@@ -49,7 +49,7 @@ export const metadata = {
     title: 'Pravi Global IVF Polyclinic - Best IVF Centre in Delhi',
     description:
       'Top fertility clinic in Delhi offering advanced IVF, ICSI, and IUI treatments with high success rates. Compassionate care from expert IVF doctors.',
-    images: ['/og-image.jpg'],
+    images: ['/images/og-image.jpg'],
   },
   robots: {
     index: true,
@@ -67,6 +67,130 @@ export const metadata = {
   },
 };
 
+const mapSchema = {
+  "@context": "https://schema.org",
+  "@type": "MedicalOrganization",
+  "name": "Pravi Global IVF Polyclinic",
+  "alternateName": "Pravi Global IVF & Fertility Center",
+  "url": "https://praviglobalivf.com",
+  "logo": "https://praviglobalivf.com/logo.png",
+  "image": [
+    "https://praviglobalivf.com/images/og-image.jpg",
+    "https://praviglobalivf.com/logo.png"
+  ],
+  "description": "Pravi Global IVF Polyclinic is one of the best IVF and fertility centres in Delhi offering IVF, ICSI, IUI, surrogacy, egg donation, egg freezing and advanced fertility care.",
+  "email": "info@praviglobalivf.in",
+  "telephone": "+91 8009150040",
+
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Building number 41, First Floor, Ring Rd, Block Q, Lajpat Nagar IV",
+    "addressLocality": "Lajpat Nagar",
+    "addressRegion": "New Delhi",
+    "postalCode": "110024",
+    "addressCountry": "IN"
+  },
+
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 28.5721,
+    "longitude": 77.2437
+  },
+
+  "hasMap": "https://maps.app.goo.gl/79RLa9txkQWQ58Jg6",
+
+  "openingHoursSpecification": {
+    "@type": "OpeningHoursSpecification",
+    "dayOfWeek": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday",
+      "Sunday"
+    ],
+    "opens": "09:00",
+    "closes": "18:00"
+  },
+
+  "medicalSpecialty": [
+    "IVF",
+    "ICSI",
+    "IUI",
+    "Surrogacy",
+    "Egg Freezing",
+    "Embryo Freezing",
+    "Male Infertility",
+    "Female Infertility",
+    "Fertility Consultation"
+  ],
+
+  "sameAs": [
+    "https://maps.app.goo.gl/79RLa9txkQWQ58Jg6",
+    "https://www.practo.com/delhi/clinic/pravi-global-ivf-polyclinic-lajpat-nagar-4",
+    "https://www.justdial.com/Delhi/Pravi-Global-IVF-Polyclinic-Next-to-Rama-Gallery-Lajpat-Nagar/011PXX11-XX11-250416163017-Q6I5_BZDET",
+    "https://www.facebook.com/www.praviivf.in/",
+    "https://www.instagram.com/ivfpravi/",
+    "https://www.youtube.com/@ivfcentre1Msubscriber"
+  ],
+
+  "imageObject": {
+    "@type": "ImageObject",
+    "contentUrl": "https://praviglobalivf.com/images/og-image.jpg",
+    "url": "https://praviglobalivf.com/images/og-image.jpg",
+    "name": "Pravi Global IVF Polyclinic - Front View",
+    "description": "Front view and reception area of Pravi Global IVF Polyclinic, Lajpat Nagar, New Delhi.",
+    "representativeOfPage": true
+  },
+
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.9", 
+    "bestRating": "5",
+    "ratingCount": "157"
+  },
+
+  "review": [
+    {
+      "@type": "Review",
+      "name": "Google Reviews",
+      "author": {
+        "@type": "Organization",
+        "name": "Google"
+      },
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": "4.9",
+        "bestRating": "5"
+      },
+      "url": "https://maps.app.goo.gl/79RLa9txkQWQ58Jg6"
+    },
+    {
+      "@type": "Review",
+      "name": "Practo Rating",
+      "author": {
+        "@type": "Organization",
+        "name": "Practo"
+      },
+      "reviewBody": "Patient stories and treatment experience testimonials.",
+      "url": "https://www.practo.com/delhi/clinic/pravi-global-ivf-polyclinic-lajpat-nagar-4"
+    },
+    {
+      "@type": "Review",
+      "name": "Justdial Rating",
+      "author": {
+        "@type": "Organization",
+        "name": "Justdial"
+      },
+      "reviewBody": "Clinic reviews and photo submissions on Justdial.",
+      "url": "https://www.justdial.com/Delhi/Pravi-Global-IVF-Polyclinic-Next-to-Rama-Gallery-Lajpat-Nagar/011PXX11-XX11-250416163017-Q6I5_BZDET"
+    }
+  ],
+
+  "priceRange": "₹₹₹"
+}
+
 
 export default function RootLayout({ children }) {
   const organizationSchema = generateOrganizationSchema();
@@ -78,6 +202,10 @@ export default function RootLayout({ children }) {
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
         />
+        <script 
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(mapSchema) }}
+      />
       </head>
       <body className={inter.className}>
         <Header />

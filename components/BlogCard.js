@@ -31,8 +31,7 @@ export function BlogCard({ blog }) {
         <div className="flex items-center gap-4 text-sm text-gray-500 mb-3">
           <span>
             {new Date(blog.createdAt).toLocaleDateString("en-US", {
-              month: "short",
-              day: "numeric",
+              month: "short", 
               year: "numeric",
             })}
           </span>
@@ -58,7 +57,7 @@ export function BlogCard({ blog }) {
               />
             </div>
             <div>
-              <p className="text-sm font-medium text-gray-900">Dr. Deep</p>
+              <p className="text-sm font-medium text-gray-900">Pravi global ivf</p>
               <p className="text-xs text-gray-500">Author</p>
             </div>
           </div>

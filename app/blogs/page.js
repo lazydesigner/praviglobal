@@ -93,7 +93,7 @@ export default async function BlogsPage() {
       </section> */}
 
       {/* Blog Grid */}
-      <section className="container mx-auto px-4 pb-20">
+      <section className="max-w-7xl container mx-auto px-4 pb-20">
         {BLOG_POSTS.length > 0 ? (
           <>
             <div className="text-center mb-8">
