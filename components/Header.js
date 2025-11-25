@@ -91,7 +91,7 @@ export default function Header() {
     <>
       {/* Top Bar */}
       <div className="bg-[#004242] text-white py-2 hidden md:block">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-4">
           <div className="flex justify-between items-center text-sm">
             <div className="flex items-center space-x-6">
               <a
@@ -116,7 +116,7 @@ export default function Header() {
           scrolled ? 'bg-[#005353] shadow-lg text-white' : 'bg-blue-900 backdrop-blur-sm'
         }`}
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-4">
           <div className="flex justify-between items-center py-4">
             {/* Logo */}
             <Link href="/" className="flex items-center space-x-2 group">

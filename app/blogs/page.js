@@ -1,21 +1,49 @@
-'use client';
-import { useState } from 'react';
+// 'use client';
+// import { useState } from 'react';
 import { Search, TrendingUp } from 'lucide-react';
 import { BlogCard } from '@/components/BlogCard';
-import { BlogCategories } from '@/components/BlogCategories';
-import { blogPosts, categories } from '@/lib/blogData';
+import { BlogCategories } from '@/components/BlogCategories'; 
+// import { blogPosts, categories } from '@/lib/blogData';
 
-export default function BlogsPage() {
-  const [activeCategory, setActiveCategory] = useState('All Posts');
-  const [searchQuery, setSearchQuery] = useState('');
+import Post from '@/models/Post';
+import dbConnect from '@/lib/dbConnect';
 
-  const filteredBlogs = blogPosts.filter(blog => {
-    const matchesCategory = activeCategory === 'All Posts' || blog.category === activeCategory;
-    const matchesSearch = blog.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                         blog.excerpt.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                         blog.tags.some(tag => tag.toLowerCase().includes(searchQuery.toLowerCase()));
-    return matchesCategory && matchesSearch;
-  });
+async function getPosts() {
+  await dbConnect()
+  const posts = await Post.find({ status: "published" })
+    .sort({ createdAt: -1 })
+    .limit(3)
+    .lean()
+  return JSON.parse(JSON.stringify(posts))
+}
+
+async function getAllPosts() {
+  await dbConnect()
+  const posts = await Post.find({ status: "published" })
+    .sort({ createdAt: -1 }) 
+    .lean()
+  return JSON.parse(JSON.stringify(posts))
+}
+
+
+export default async function BlogsPage() {
+  
+  const featuredPosts = await getPosts() 
+  const BLOG_POSTS = await getAllPosts() 
+
+  // const [activeCategory, setActiveCategory] = useState('All Postsw');
+  // const [searchQuery, setSearchQuery] = useState('');
+
+  // const BLOG_POSTS = BLOG_POSTS.filter(blog => {
+  //   const matchesCategory = activeCategory === 'All Postsw';
+  //   const matchesSearch = blog.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+  //                        blog.excerpt.toLowerCase().includes(searchQuery.toLowerCase()) ||
+  //                        blog.tags.some(tag => tag.toLowerCase().includes(searchQuery.toLowerCase()));
+  //   return matchesCategory && matchesSearch;
+  // });
+
+
+  // console.log(BLOG_POSTS)
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-blue-50 via-white to-blue-50">
@@ -39,7 +67,7 @@ export default function BlogsPage() {
             </p>
             
             {/* Search Bar */}
-            <div className="relative max-w-2xl mx-auto">
+            {/* <div className="relative max-w-2xl mx-auto">
               <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
               <input
                 type="text"
@@ -48,33 +76,33 @@ export default function BlogsPage() {
                 onChange={(e) => setSearchQuery(e.target.value)}
                 className="w-full pl-12 pr-4 py-4 rounded-2xl text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-4 focus:ring-blue-300 shadow-xl"
               />
-            </div>
+            </div> */}
           </div>
         </div>
       </section>
 
       {/* Categories */}
-      <section className="container mx-auto px-4 py-12">
+      {/* <section className="container mx-auto px-4 py-12">
         <BlogCategories 
           categories={categories}
           activeCategory={activeCategory}
           onCategoryChange={setActiveCategory}
         />
-      </section>
+      </section> */}
 
       {/* Blog Grid */}
       <section className="container mx-auto px-4 pb-20">
-        {filteredBlogs.length > 0 ? (
+        {BLOG_POSTS.length > 0 ? (
           <>
             <div className="text-center mb-8">
               <p className="text-gray-600">
-                Showing <span className="font-semibold text-blue-600">{filteredBlogs.length}</span> {filteredBlogs.length === 1 ? 'article' : 'articles'}
+                Showing <span className="font-semibold text-blue-600">{BLOG_POSTS.length}</span> {BLOG_POSTS.length === 1 ? 'article' : 'articles'}
               </p>
             </div>
             
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {filteredBlogs.map((blog) => (
-                <BlogCard key={blog.id} blog={blog} />
+              {BLOG_POSTS.map((blog) => (
+                <BlogCard key={blog._id} blog={blog} />
               ))}
             </div>
           </>
@@ -84,10 +112,10 @@ export default function BlogsPage() {
             <h3 className="text-2xl font-bold text-gray-900 mb-2">No articles found</h3>
             <p className="text-gray-600 mb-6">Try adjusting your search or filter criteria</p>
             <button
-              onClick={() => {
-                setSearchQuery('');
-                setActiveCategory('All Posts');
-              }}
+              // onClick={() => {
+              //   setSearchQuery('');
+              //   setActiveCategory('All Postsw');
+              // }}
               className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
             >
               Clear Filters
@@ -96,7 +124,7 @@ export default function BlogsPage() {
         )}
       </section>
 
-      {/* Newsletter Section */}
+    {/* Newsletter Section */}
       <section className="bg-gradient-to-r from-blue-600 to-blue-800 py-16">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center text-white">
