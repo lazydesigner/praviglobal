@@ -58,7 +58,26 @@ export default async function BlogPage({ params }) {
   }).lean();
 
   if (!post) {
-    return <div className="p-10 text-center">Blog not found</div>;
+    return <div className="flex flex-col items-center justify-center py-20 text-center">
+      <FileX className="w-16 h-16 text-red-500 mb-4" />
+
+      <h2 className="text-2xl font-semibold text-gray-800 mb-2">
+        Blog Post Not Found
+      </h2>
+
+      <p className="text-gray-500 max-w-md mb-6">
+        The blog you're trying to access doesn't exist or may have been removed.  
+        Please check the URL or browse other articles.
+      </p>
+
+      <Link
+        href="/blogs"
+        className="flex items-center gap-2 px-5 py-2.5 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition-all"
+      >
+        <ArrowLeft className="w-5 h-5" />
+        Back to Blogs
+      </Link>
+    </div>;
   }
 
   const relatedPosts = await Post.find({

@@ -10,7 +10,7 @@ function calculateReadingTime(content) {
 export function BlogCard({ blog }) {
   return (
     <a
-      href={`/blogs/${blog.slug}`}
+      href={`/${blog.slug}`}
       className="group block bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2"
     >
       {/* Blog Thumbnail */}

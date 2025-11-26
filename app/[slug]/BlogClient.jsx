@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 import { ArrowLeft, Calendar, Clock, Share2, Facebook, Twitter, Linkedin, Mail, ChevronRight, Tag } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function BlogClient({ blog, relatedBlogs }) {
     const [shareUrl, setShareUrl] = useState("");
@@ -12,7 +13,26 @@ export default function BlogClient({ blog, relatedBlogs }) {
         }
     }, []);
 
-    if (!blog) return <div>Blog not found</div>;
+    if (!blog) return <div className="flex flex-col items-center justify-center py-20 text-center">
+      <FileX className="w-16 h-16 text-red-500 mb-4" />
+
+      <h2 className="text-2xl font-semibold text-gray-800 mb-2">
+        Blog Post Not Found
+      </h2>
+
+      <p className="text-gray-500 max-w-md mb-6">
+        The blog you're trying to access doesn't exist or may have been removed.  
+        Please check the URL or browse other articles.
+      </p>
+
+      <Link
+        href="/blogs"
+        className="flex items-center gap-2 px-5 py-2.5 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition-all"
+      >
+        <ArrowLeft className="w-5 h-5" />
+        Back to Blogs
+      </Link>
+    </div>;
 
     const shareLinks = {
         facebook: `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}`,
