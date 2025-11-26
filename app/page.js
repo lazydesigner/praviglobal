@@ -132,10 +132,10 @@ export default function HomePage() {
             <div className="order-2 lg:order-1">
               <span className="text-blue-600 font-semibold mb-2 block">ABOUT US</span>
               <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-                Welcome to Pravi IVF & Fertility Center
+                Welcome to Pravi Global IVF & Fertility Center
               </h2>
               <p className="text-gray-600 mb-6 leading-relaxed text-lg">
-                At Pravi IVF and Fertility Center, we understand that the journey to parenthood can be challenging. 
+                At Pravi Global IVF and Fertility Center, we understand that the journey to parenthood can be challenging. 
                 Our team of experienced fertility specialists is dedicated to providing personalized, compassionate care 
                 using the latest reproductive technologies.
               </p>
